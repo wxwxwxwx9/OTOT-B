@@ -19,7 +19,7 @@ const testContact = {
 describe("Contacts", () => {
 	describe("API test", () => {
 		before((done) => {
-			db.open().then(() => {;
+			db.open().then(() => {
 				done();
 			});
 		});

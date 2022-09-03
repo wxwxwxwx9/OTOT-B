@@ -6,7 +6,6 @@ const MONGODB_URI = 'mongodb://localhost/app';
 const open = async () => {
 	if (process.env.NODE_ENV === 'test') {
 		const mockgoose = new Mockgoose(mongoose);
-		throw new Error("before");
 		await mockgoose.prepareStorage();
 	}
 
