@@ -3,6 +3,7 @@ import chaiHttp from 'chai-http';
 import app from '../app.js';
 import db from '../db.js';
 import contactModel from '../contactModel.js';
+import { doesNotThrow } from 'assert';
 
 // Configure chai
 chai.use(chaiHttp);
@@ -17,12 +18,15 @@ const testContact = {
 
 describe("Contacts", () => {
 	describe("API test", () => {
-		before(async () => {
-			await db.open();
+		before((done) => {
+			db.open().then(() => {;
+				done();
+			});
 		});
 
-		after(() => {
+		after((done) => {
 			db.close();
+			done();
 		});
 
 		step("GET /api/contacts", async () => {
