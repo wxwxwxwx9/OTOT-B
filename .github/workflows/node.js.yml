@@ -27,5 +27,5 @@ jobs:
         node-version: ${{ matrix.node-version }}
         cache: 'npm'
     - run: npm ci
-    - run: npm setup-mockgoose
-    - run: npm test
+    - run: npm run setup-mockgoose
+    - run: npm run test
