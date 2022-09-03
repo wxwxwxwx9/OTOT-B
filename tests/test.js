@@ -32,6 +32,8 @@ describe("Contacts", () => {
 				.request(app)
 				.get('/api/contacts')
 
+			throw new Error("hi");
+
 			res.should.have.status(400);
 			res.body.should.be.a('object');
 		});
