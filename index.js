@@ -18,16 +18,19 @@ app.use('/api', routes)
 
 // Setup mongoose
 const MONGODB_URI = 'mongodb://localhost/app'; 
+const setupMongoose = async () => {
+	if (process.env.NODE_ENV === 'test') {
+		const mockgoose = new Mockgoose(mongoose);
+		await mockgoose.prepareStorage()
+	}	
+	
+	await mongoose.connect(MONGODB_URI, { useNewUrlParser: true });
+	mongoose.connection.on('connected', () => {
+		console.log('mongoose now connected')
+	});
+};
 
-if (process.env.NODE_ENV === 'test') {
-	const mockgoose = new Mockgoose(mongoose);
-	mockgoose.prepareStorage()
-}	
-
-mongoose.connect(MONGODB_URI, { useNewUrlParser: true });
-mongoose.connection.on('connected', () => {
-	console.log('mongoose now connected')
-});
+setupMongoose();
 
 // Setup server port
 const port = process.env.PORT || 8080;
