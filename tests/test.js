@@ -4,8 +4,6 @@ import app from '../app.js';
 import db from '../db.js';
 import contactModel from '../contactModel.js';
 
-await db.open();
-
 // Configure chai
 chai.use(chaiHttp);
 chai.should();
@@ -28,6 +26,7 @@ describe("Contacts", () => {
 		// });
 
 		step("GET /api/contacts", async () => {
+			await db.open();
 			const res = await chai
 				.request(app)
 				.get('/api/contacts')
@@ -37,6 +36,7 @@ describe("Contacts", () => {
 		});
 
 		step("POST /api/contacts", async () => {
+			await db.open();
 			const res = await chai
 				.request(app)
 				.post('/api/contacts')
@@ -47,6 +47,7 @@ describe("Contacts", () => {
 		});
 
 		step("PUT /api/contacts/{id}", async () => {
+			await db.open();
 			const contacts = await contactModel
 				.find(testContact)
 				.exec();
@@ -61,6 +62,7 @@ describe("Contacts", () => {
 		});
 
 		step("DELETE /api/contacts/{id}", async () => {
+			await db.open();
 			const contacts = await contactModel
 				.find(testContact)
 				.exec();
