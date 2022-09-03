@@ -14,17 +14,20 @@ app.use(bodyParser.urlencoded({
 app.use(bodyParser.json());
 
 // Setup routes
-app.use('/api', routes)
+app.use('/api', routes);
 
 // Setup mongoose
 const MONGODB_URI = 'mongodb://localhost/app'; 
 
 if (process.env.NODE_ENV === 'test') {
 	const mockgoose = new Mockgoose(mongoose);
-	await mockgoose.prepareStorage();
+	mockgoose.prepareStorage().then(() => {
+		mongoose.connect(MONGODB_URI, { useNewUrlParser: true });
+	});
+} else {
+	mongoose.connect(MONGODB_URI, { useNewUrlParser: true });
 }	
 
-mongoose.connect(MONGODB_URI, { useNewUrlParser: true });
 mongoose.connection.on('connected', () => {
 	console.log('mongoose now connected')
 });
