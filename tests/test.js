@@ -17,16 +17,15 @@ const testContact = {
 
 describe("Contacts", () => {
 	describe("API test", () => {
-		// before(async () => {
-		// 	await db.open();
-		// });
+		before(async () => {
+			await db.open();
+		});
 
-		// after(() => {
-		// 	db.close();
-		// });
+		after(() => {
+			db.close();
+		});
 
 		step("GET /api/contacts", async () => {
-			await db.open();
 			const res = await chai
 				.request(app)
 				.get('/api/contacts')
@@ -36,7 +35,6 @@ describe("Contacts", () => {
 		});
 
 		step("POST /api/contacts", async () => {
-			await db.open();
 			const res = await chai
 				.request(app)
 				.post('/api/contacts')
@@ -47,7 +45,6 @@ describe("Contacts", () => {
 		});
 
 		step("PUT /api/contacts/{id}", async () => {
-			await db.open();
 			const contacts = await contactModel
 				.find(testContact)
 				.exec();
@@ -62,7 +59,6 @@ describe("Contacts", () => {
 		});
 
 		step("DELETE /api/contacts/{id}", async () => {
-			await db.open();
 			const contacts = await contactModel
 				.find(testContact)
 				.exec();

@@ -6,6 +6,7 @@
   "type": "module",
   "scripts": {
     "start": "node index.js",
+    "setup-mockgoose": "node ./tests/mockgoose.js",
     "test": "NODE_ENV=test mocha --require 'mocha-steps' ./tests/test.js"
   },
   "author": "",
