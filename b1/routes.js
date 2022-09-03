@@ -1,18 +1,16 @@
-// api-routes.js
+import express from 'express';
+import contactController from './contactController.js';
 
 // Initialize express router
-let router = require('express').Router();
+let router = express.Router();
 
 // Set default API response
 router.get('/', function (req, res) {
     res.json({
         status: 'API Its Working',
-        message: 'Welcome to RESTHub crafted with love!',
+        message: 'Welcome to app crafted with love!',
     });
 });
-
-// Import contact controller
-var contactController = require('./contactController');
 
 // Contact routes
 router.route('/contacts')
@@ -25,4 +23,4 @@ router.route('/contacts/:contact_id')
     .delete(contactController.delete);
 
 // Export API routes
-module.exports = router;
+export default router;

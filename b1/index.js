@@ -1,24 +1,24 @@
 // Setup express 
-let express = require('express')
-let app = express();
+import express from 'express';
+import bodyParser from 'body-parser';
+import mongoose from 'mongoose';
+import routes from './routes.js';
+
+const app = express();
 
 // Setup bodyparser
-let bodyParser = require('body-parser');
 app.use(bodyParser.urlencoded({
 	extended: true
 }));
 app.use(bodyParser.json());
-// app.use(express.json());
 
 // Setup routes
-let apiRoutes = require("./api-routes")
-app.use('/api', apiRoutes)
+app.use('/api', routes)
 
 // Setup mongoose
-let mongoose = require('mongoose');
-mongoose.connect('mongodb://localhost/resthub', { useNewUrlParser: true });
+mongoose.connect('mongodb://localhost/app', { useNewUrlParser: true });
 
-var db = mongoose.connection;
+const db = mongoose.connection;
 if (!db) {
 	console.log("Error connecting db");
 } else {
@@ -26,12 +26,14 @@ if (!db) {
 }
 
 // Setup server port
-var port = process.env.PORT || 8080;
+const port = process.env.PORT || 8080;
 
 // Send message for default URL
 app.get('/', (req, res) => res.send('Hello World with Express'));
 
 // Launch app to listen to specified port
 app.listen(port, function () {
-     console.log("Running RestHub on port " + port);
+	console.log("Running app on port " + port);
 });
+
+export default app;

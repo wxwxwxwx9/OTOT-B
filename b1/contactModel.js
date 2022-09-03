@@ -1,8 +1,7 @@
-// contactModel.js
-var mongoose = require('mongoose');
+import mongoose from 'mongoose';
 
 // Setup schema
-var contactSchema = mongoose.Schema({
+const contactSchema = mongoose.Schema({
     name: {
         type: String,
         required: true
@@ -20,7 +19,9 @@ var contactSchema = mongoose.Schema({
 });
 
 // Export Contact model
-var Contact = module.exports = mongoose.model('contact', contactSchema);
-module.exports.get = function (callback, limit) {
+const Contact = mongoose.model('contact', contactSchema);
+Contact.get = (callback, limit) => {
     Contact.find(callback).limit(limit);
 }
+
+export default Contact;
