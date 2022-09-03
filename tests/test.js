@@ -21,7 +21,7 @@ describe("Contacts", () => {
 				.request(app)
 				.get('/api/contacts')
 
-			res.should.have.status(200);
+			res.should.have.status(400);
 			res.body.should.be.a('object');
 		});
 		step("POST /api/contacts", async () => {
