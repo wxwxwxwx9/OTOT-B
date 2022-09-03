@@ -2,6 +2,7 @@
 import express from 'express';
 import bodyParser from 'body-parser';
 import mongoose from 'mongoose';
+import { Mockgoose } from 'mockgoose';
 import routes from './routes.js';
 
 const app = express();
@@ -16,14 +17,17 @@ app.use(bodyParser.json());
 app.use('/api', routes)
 
 // Setup mongoose
-mongoose.connect('mongodb://localhost/app', { useNewUrlParser: true });
+const MONGODB_URI = 'mongodb://localhost/app'; 
 
-const db = mongoose.connection;
-if (!db) {
-	console.log("Error connecting db");
-} else {
-	console.log("Db connected successfully");
-}
+if (process.env.NODE_ENV === 'test') {
+	const mockgoose = new Mockgoose(mongoose);
+	await mockgoose.prepareStorage()
+}	
+
+await mongoose.connect(MONGODB_URI, { useNewUrlParser: true });
+mongoose.connection.on('connected', () => {
+	console.log('mockgoose now connected')
+});
 
 // Setup server port
 const port = process.env.PORT || 8080;
