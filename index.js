@@ -30,7 +30,7 @@ const setupMongoose = async () => {
 	});
 };
 
-setupMongoose();
+await setupMongoose();
 
 // Setup server port
 const port = process.env.PORT || 8080;
