@@ -4,8 +4,6 @@ import app from '../app.js';
 import db from '../db.js';
 import contactModel from '../contactModel.js';
 
-await db.open();
-
 // Configure chai
 chai.use(chaiHttp);
 chai.should();
@@ -19,20 +17,18 @@ const testContact = {
 
 describe("Contacts", () => {
 	describe("API test", () => {
-		// before(async () => {
-		// 	await db.open();
-		// });
+		before(async () => {
+			await db.open();
+		});
 
-		// after(() => {
-		// 	db.close();
-		// });
+		after(() => {
+			db.close();
+		});
 
 		step("GET /api/contacts", async () => {
 			const res = await chai
 				.request(app)
 				.get('/api/contacts')
-
-			throw new Error("hi");
 
 			res.should.have.status(400);
 			res.body.should.be.a('object');

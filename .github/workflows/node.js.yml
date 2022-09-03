@@ -28,4 +28,4 @@ jobs:
         cache: 'npm'
     - run: npm ci
     - run: npm run setup-mockgoose
-    - run: npm run test
+    - run: npm test
