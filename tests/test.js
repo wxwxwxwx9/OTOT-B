@@ -18,7 +18,6 @@ const testContact = {
 describe("Contacts", () => {
 	describe("API test", () => {
 		before(async () => {
-			throw new Error("hi");
 			await db.open();
 		});
 
