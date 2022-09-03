@@ -9,6 +9,7 @@ const open = async () => {
 		await mockgoose.prepareStorage();
 	}
 
+	throw new Error("before");
 	mongoose.connect(MONGODB_URI, { useNewUrlParser: true });
 	mongoose.connection.on('connected', () => {
 		console.log('mongoose now connected')
