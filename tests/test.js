@@ -78,5 +78,5 @@ describe("Contacts", () => {
 				assert(false, 'failed to delete one of the contacts');
 			}
 		});
-	});
+	}).timeout(5000);
 });
