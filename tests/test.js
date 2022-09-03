@@ -25,7 +25,7 @@ describe("Contacts", () => {
 			db.close();
 		});
 
-		it("GET /api/contacts", async () => {
+		step("GET /api/contacts", async () => {
 			const res = await chai
 				.request(app)
 				.get('/api/contacts')
@@ -34,7 +34,7 @@ describe("Contacts", () => {
 			res.body.should.be.a('object');
 		});
 
-		it("POST /api/contacts", async () => {
+		step("POST /api/contacts", async () => {
 			const res = await chai
 				.request(app)
 				.post('/api/contacts')
@@ -44,7 +44,7 @@ describe("Contacts", () => {
 			res.body.should.be.a('object');
 		});
 
-		it("PUT /api/contacts/{id}", async () => {
+		step("PUT /api/contacts/{id}", async () => {
 			const contacts = await contactModel
 				.find(testContact)
 				.exec();
@@ -58,7 +58,7 @@ describe("Contacts", () => {
 			res.body.should.be.a('object');
 		});
 
-		it("DELETE /api/contacts/{id}", async () => {
+		step("DELETE /api/contacts/{id}", async () => {
 			const contacts = await contactModel
 				.find(testContact)
 				.exec();
