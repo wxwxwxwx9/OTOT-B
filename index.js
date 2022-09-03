@@ -21,12 +21,12 @@ const MONGODB_URI = 'mongodb://localhost/app';
 
 if (process.env.NODE_ENV === 'test') {
 	const mockgoose = new Mockgoose(mongoose);
-	await mockgoose.prepareStorage()
+	mockgoose.prepareStorage()
 }	
 
-await mongoose.connect(MONGODB_URI, { useNewUrlParser: true });
+mongoose.connect(MONGODB_URI, { useNewUrlParser: true });
 mongoose.connection.on('connected', () => {
-	console.log('mockgoose now connected')
+	console.log('mongoose now connected')
 });
 
 // Setup server port
