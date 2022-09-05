@@ -5,8 +5,8 @@
   "main": "index.js",
   "type": "module",
   "scripts": {
-    "serve": "node index.js",
-    "start": "serve -s build",
+    "serve": "NODE_ENV=test node index.js",
+    "start": "NODE_ENV=test serve -s build",
     "setup-mockgoose": "node ./tests/mockgoose.js",
     "test": "NODE_ENV=test mocha --require 'mocha-steps' --exit ./tests/test.js"
   },
