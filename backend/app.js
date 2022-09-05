@@ -11,7 +11,7 @@ app.use(bodyParser.urlencoded({
 }));
 app.use(bodyParser.json());
 
-// Enable cors
+// Enable cors regardless of PROD or not
 app.use(cors());
 
 // Setup routes
