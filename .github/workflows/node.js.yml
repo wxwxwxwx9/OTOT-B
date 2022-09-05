@@ -52,8 +52,9 @@ jobs:
         aws_secret_key: ${{secrets.AWS_SECRET_KEY}}
         application_name: "CS3219_OTOT_B_app"
         environment_name: "Cs3219ototbapp-env"
-        region: "ap-south-1"
+        region: "ap-southeast-1"
         version_label: "CS3219_OTOT_B_app-${{ steps.format-time.outputs.replaced }}"
+        existing_bucket-name: "elasticbeanstalk-ap-southeast-1-582969597664"
         deployment_package: deploy.zip
 
     - name: Deployed!
