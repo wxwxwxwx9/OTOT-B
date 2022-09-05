@@ -18,8 +18,9 @@ export default function AddContact() {
 		};
 
 		console.log(contact);
+		console.log(process.env.REACT_APP_API_URL);
 
-		axios.post(`http://localhost:8080/api/contacts`, contact)
+		axios.post(`${process.env.REACT_APP_API_URL}/api/contacts`, contact)
 			.then(res => {
 				console.log(res);	
 			})

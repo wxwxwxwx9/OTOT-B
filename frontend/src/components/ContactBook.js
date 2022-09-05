@@ -5,16 +5,16 @@ export default function ContactBook() {
 	const [ contacts, setContacts ] = useState([]);
 
 	useEffect(() => {
-		axios.get(`http://localhost:8080/api/contacts`)
+		axios.get(`${process.env.REACT_APP_API_URL}/api/contacts`)
 			.then((res) => {
 				console.log(res);
 				setContacts(res.data.data);
 			});
-	});
+	}, []);
 
 	const deleteContact = (id) => {
 		// server must still run when deleting non-existent id
-		axios.delete(`http://localhost:8080/api/contacts/${id}`)
+		axios.delete(`${process.env.REACT_APP_API_URL}/api/contacts/${id}`)
 			.then((res) => {
 				console.log(res);
 			});
