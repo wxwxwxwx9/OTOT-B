@@ -4,10 +4,10 @@ import { MongoMemoryServer } from 'mongodb-memory-server';
 let MONGODB_URI = 'mongodb://localhost/app'; 
 
 const open = async () => {
-	if (process.env.NODE_ENV === 'test') {
-		const mongod = await MongoMemoryServer.create();
-		MONGODB_URI = mongod.getUri();
-	}
+	// if (process.env.NODE_ENV === 'test') {
+	const mongod = await MongoMemoryServer.create();
+	MONGODB_URI = mongod.getUri();
+	// }
 
 	await mongoose.connect(MONGODB_URI, { useNewUrlParser: true });
 	mongoose.connection.on('connected', () => {
