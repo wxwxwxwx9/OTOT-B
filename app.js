@@ -1,6 +1,7 @@
 import express from 'express';
 import bodyParser from 'body-parser';
 import routes from './routes.js';
+import cors from 'cors';
 
 const app = express();
 
@@ -9,6 +10,9 @@ app.use(bodyParser.urlencoded({
 	extended: true
 }));
 app.use(bodyParser.json());
+
+// Enable cors
+app.use(cors());
 
 // Setup routes
 app.use('/api', routes);
