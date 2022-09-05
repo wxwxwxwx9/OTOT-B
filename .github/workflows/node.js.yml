@@ -14,6 +14,10 @@ jobs:
 
     runs-on: ubuntu-latest
 
+    defaults:
+       run:
+         working-directory: ./backend
+
     strategy:
       matrix:
         node-version: [16.x]
@@ -26,11 +30,11 @@ jobs:
       with:
         node-version: ${{ matrix.node-version }}
         cache: 'npm'
-    - run: cd backend && npm ci
-    - run: cd backend && npm test
+    - run: npm ci
+    - run: npm test
 
     - name: Generate deployment package
-      run: cd backend && zip -r deploy.zip * -x "**node_modules**"
+      run: zip -r deploy.zip * -x "**node_modules**"
 
     - name: Get timestamp
       uses: gerred/actions/current-time@master
@@ -54,7 +58,7 @@ jobs:
         environment_name: "Cs3219ototbapp-env"
         region: "ap-southeast-1"
         version_label: "CS3219_OTOT_B_app-${{ steps.format-time.outputs.replaced }}"
-        deployment_package: ./backend/deploy.zip
+        deployment_package: deploy.zip
 
     - name: Deployed!
       run: echo App deployed to ELB
