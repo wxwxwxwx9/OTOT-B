@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import axios from 'axios';
 
-export default function Contact() {
+export default function AddContact() {
 	const [name, setName] = useState('');
 	const [email, setEmail] = useState('');
 	const [gender, setGender] = useState('');
@@ -25,9 +25,9 @@ export default function Contact() {
 			})
 	};
 
-	const render = () => {
+	const renderAddContact = () => {
 		return (
-			<div className="contact">
+			<div className="add-contact">
 				<div class="field">
 					<label class="label">Name</label>
 					<input class="input is-info" type="text" placeholder="" onChange={(e) => setName(e.target.value)}/>
@@ -51,5 +51,14 @@ export default function Contact() {
 		);
 	};
 
-	return <div>{render()}</div>;
+	return (
+		<section class="section">
+			<div class="field">
+				<label class="label">Add Contact</label>
+			</div>
+			<div class="field">
+				{renderAddContact()}
+			</div>
+		</section>
+	);
 }

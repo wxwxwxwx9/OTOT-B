@@ -1,14 +1,14 @@
 import logo from './logo.svg';
 import './App.css';
 import 'bulma/css/bulma.min.css'
-import Contact from './components/Contact';
+import AddContact from './components/AddContact';
+import ContactBook from './components/ContactBook';
 
 function App() {
   return (
     <div className="App">
-      <div className="container">
-        <Contact/>
-      </div>
+      <AddContact/>
+      <ContactBook/>
     </div>
   );
 }
